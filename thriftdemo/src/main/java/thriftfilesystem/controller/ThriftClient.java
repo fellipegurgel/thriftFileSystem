@@ -18,7 +18,7 @@ public class ThriftClient
   {
     try
     {
-      TSocket transport = new TSocket("localhost", 9002);
+      TSocket transport = new TSocket("localhost", 9004);
       transport.open();
       TProtocol protocol = new TBinaryProtocol(transport);
  

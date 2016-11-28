@@ -26,6 +26,6 @@ public class HelloImpl implements FileSystem.Iface {
     }
 
     public String hi() throws TException {
-        return "Hello DoubleCloud.org";
+        return "Hello "+otherServers[2];
     }
 }
