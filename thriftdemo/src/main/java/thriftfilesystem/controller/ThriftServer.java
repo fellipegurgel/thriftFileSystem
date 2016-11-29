@@ -5,7 +5,7 @@
  */
 package thriftfilesystem.controller;
 
-import thriftfilesystem.controller.HelloImpl;
+import thriftfilesystem.controller.ServerImpl;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
@@ -20,7 +20,7 @@ public class ThriftServer {
         //int[] allServers = serversPorts;
         try {
             TServerSocket serverTransport = new TServerSocket(serverPort);
-            FileSystem.Processor processor = new FileSystem.Processor(new HelloImpl(serversPorts));
+            FileSystem.Processor processor = new FileSystem.Processor(new ServerImpl(serversPorts));
             TServer server = new TThreadPoolServer(
                     new TThreadPoolServer.Args(serverTransport).processor(processor));
             System.out.println("Starting server on port " + serverPort + " ...");
