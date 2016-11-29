@@ -57,7 +57,7 @@ public class ThriftClient {
                     break;
             }
 
-            result = client.hi();
+            //result = client.hi();
             String[] a = null;
             new ClientResultsView("").show(result);
             //System.out.println("Return from server: " + result);

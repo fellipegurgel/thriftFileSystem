@@ -12,25 +12,26 @@ import thriftclasses.FileSystem;
 import thriftclasses.FakeFile;
 
 public class ServerImpl implements FileSystem.Iface {
-    
+
     private int[] otherServers;
     private int serverID;
     private TreeMap<String, FakeFile> fileSyetem = new TreeMap<String, FakeFile>();
 
-    public ServerImpl(int[] servers) {
+    public ServerImpl(int[] servers, int serverID) {
         this.otherServers = servers;
+        this.serverID = serverID;
     }
 
     public ServerImpl() {
     }
-    
+
     public String hi() throws TException {
-        return "Hello "+otherServers[2];
+        return "Hello " + otherServers[2];
     }
 
     @Override
     public String getFile(String path) throws TException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "nhaiiii";
     }
 
     @Override

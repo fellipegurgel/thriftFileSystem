@@ -117,6 +117,7 @@ public class ServerInitialization extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int serverPort = Integer.parseInt(jList1.getSelectedValue());
+        int serverID = jList1.getSelectedIndex();
         ListModel model = jList1.getModel();
         int[] otherServers = new int[model.getSize()];
         for (int i = 0; i < model.getSize(); i++) {
@@ -124,7 +125,7 @@ public class ServerInitialization extends javax.swing.JFrame {
         }
 
         this.setVisible(false);
-        ThriftServer.StartServer(serverPort, otherServers);
+        ThriftServer.StartServer(serverPort, otherServers, serverID);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

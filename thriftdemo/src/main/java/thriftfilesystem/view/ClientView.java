@@ -5,6 +5,8 @@
  */
 package thriftfilesystem.view;
 
+import thriftfilesystem.controller.ThriftClient;
+
 /**
  *
  * @author fellipegurgel
@@ -133,7 +135,14 @@ public class ClientView extends javax.swing.JFrame {
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
         // TODO add your handling code here:
+        String host[] = hostTextField.getText().split(":");
+        String request = (String) requestComboBox.getSelectedItem();
+        String path = pathTextField.getText();
+        byte[] data = dataTextArea.getText().getBytes();
+        int version = Integer.parseInt(versionTextField.getText());
         
+        ThriftClient.ProcessClientRequest(host[0], Integer.parseInt(host[1]), request, path, version, data);
+
     }//GEN-LAST:event_goButtonActionPerformed
 
     /**

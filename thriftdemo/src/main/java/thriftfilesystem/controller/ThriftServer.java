@@ -16,11 +16,11 @@ public class ThriftServer {
 
     //static int identifier;
     //static int[] allServers;
-    public static void StartServer(int serverPort, int[] serversPorts) {
+    public static void StartServer(int serverPort, int[] serversPorts, int serverID) {
         //int[] allServers = serversPorts;
         try {
             TServerSocket serverTransport = new TServerSocket(serverPort);
-            FileSystem.Processor processor = new FileSystem.Processor(new ServerImpl(serversPorts));
+            FileSystem.Processor processor = new FileSystem.Processor(new ServerImpl(serversPorts, serverID));
             TServer server = new TThreadPoolServer(
                     new TThreadPoolServer.Args(serverTransport).processor(processor));
             System.out.println("Starting server on port " + serverPort + " ...");
