@@ -39,41 +39,41 @@ public class FileSystem {
 
   public interface Iface {
 
-    public String getFile(String path) throws org.apache.thrift.TException;
+    public String getFile(List<String> path) throws org.apache.thrift.TException;
 
     public String hi() throws org.apache.thrift.TException;
 
-    public String listChildren(String path) throws org.apache.thrift.TException;
+    public String listChildren(List<String> path) throws org.apache.thrift.TException;
 
-    public String addFile(String path, ByteBuffer data) throws org.apache.thrift.TException;
+    public String addFile(List<String> path, ByteBuffer data) throws org.apache.thrift.TException;
 
-    public String updateFile(String path, ByteBuffer data) throws org.apache.thrift.TException;
+    public String updateFile(List<String> path, ByteBuffer data) throws org.apache.thrift.TException;
 
-    public String deleteFile(String path) throws org.apache.thrift.TException;
+    public String deleteFile(List<String> path) throws org.apache.thrift.TException;
 
-    public String updateByVersion(String path, ByteBuffer data, int version) throws org.apache.thrift.TException;
+    public String updateByVersion(List<String> path, ByteBuffer data, int version) throws org.apache.thrift.TException;
 
-    public String deleteByVersion(String path, int version) throws org.apache.thrift.TException;
+    public String deleteByVersion(List<String> path, int version) throws org.apache.thrift.TException;
 
   }
 
   public interface AsyncIface {
 
-    public void getFile(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void getFile(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
     public void hi(org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void listChildren(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void listChildren(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void addFile(String path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void addFile(List<String> path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void updateFile(String path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void updateFile(List<String> path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void deleteFile(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void deleteFile(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void updateByVersion(String path, ByteBuffer data, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void updateByVersion(List<String> path, ByteBuffer data, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void deleteByVersion(String path, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void deleteByVersion(List<String> path, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -97,13 +97,13 @@ public class FileSystem {
       super(iprot, oprot);
     }
 
-    public String getFile(String path) throws org.apache.thrift.TException
+    public String getFile(List<String> path) throws org.apache.thrift.TException
     {
       send_getFile(path);
       return recv_getFile();
     }
 
-    public void send_getFile(String path) throws org.apache.thrift.TException
+    public void send_getFile(List<String> path) throws org.apache.thrift.TException
     {
       getFile_args args = new getFile_args();
       args.setPath(path);
@@ -142,13 +142,13 @@ public class FileSystem {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "hi failed: unknown result");
     }
 
-    public String listChildren(String path) throws org.apache.thrift.TException
+    public String listChildren(List<String> path) throws org.apache.thrift.TException
     {
       send_listChildren(path);
       return recv_listChildren();
     }
 
-    public void send_listChildren(String path) throws org.apache.thrift.TException
+    public void send_listChildren(List<String> path) throws org.apache.thrift.TException
     {
       listChildren_args args = new listChildren_args();
       args.setPath(path);
@@ -165,13 +165,13 @@ public class FileSystem {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "listChildren failed: unknown result");
     }
 
-    public String addFile(String path, ByteBuffer data) throws org.apache.thrift.TException
+    public String addFile(List<String> path, ByteBuffer data) throws org.apache.thrift.TException
     {
       send_addFile(path, data);
       return recv_addFile();
     }
 
-    public void send_addFile(String path, ByteBuffer data) throws org.apache.thrift.TException
+    public void send_addFile(List<String> path, ByteBuffer data) throws org.apache.thrift.TException
     {
       addFile_args args = new addFile_args();
       args.setPath(path);
@@ -189,13 +189,13 @@ public class FileSystem {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "addFile failed: unknown result");
     }
 
-    public String updateFile(String path, ByteBuffer data) throws org.apache.thrift.TException
+    public String updateFile(List<String> path, ByteBuffer data) throws org.apache.thrift.TException
     {
       send_updateFile(path, data);
       return recv_updateFile();
     }
 
-    public void send_updateFile(String path, ByteBuffer data) throws org.apache.thrift.TException
+    public void send_updateFile(List<String> path, ByteBuffer data) throws org.apache.thrift.TException
     {
       updateFile_args args = new updateFile_args();
       args.setPath(path);
@@ -213,13 +213,13 @@ public class FileSystem {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "updateFile failed: unknown result");
     }
 
-    public String deleteFile(String path) throws org.apache.thrift.TException
+    public String deleteFile(List<String> path) throws org.apache.thrift.TException
     {
       send_deleteFile(path);
       return recv_deleteFile();
     }
 
-    public void send_deleteFile(String path) throws org.apache.thrift.TException
+    public void send_deleteFile(List<String> path) throws org.apache.thrift.TException
     {
       deleteFile_args args = new deleteFile_args();
       args.setPath(path);
@@ -236,13 +236,13 @@ public class FileSystem {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "deleteFile failed: unknown result");
     }
 
-    public String updateByVersion(String path, ByteBuffer data, int version) throws org.apache.thrift.TException
+    public String updateByVersion(List<String> path, ByteBuffer data, int version) throws org.apache.thrift.TException
     {
       send_updateByVersion(path, data, version);
       return recv_updateByVersion();
     }
 
-    public void send_updateByVersion(String path, ByteBuffer data, int version) throws org.apache.thrift.TException
+    public void send_updateByVersion(List<String> path, ByteBuffer data, int version) throws org.apache.thrift.TException
     {
       updateByVersion_args args = new updateByVersion_args();
       args.setPath(path);
@@ -261,13 +261,13 @@ public class FileSystem {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "updateByVersion failed: unknown result");
     }
 
-    public String deleteByVersion(String path, int version) throws org.apache.thrift.TException
+    public String deleteByVersion(List<String> path, int version) throws org.apache.thrift.TException
     {
       send_deleteByVersion(path, version);
       return recv_deleteByVersion();
     }
 
-    public void send_deleteByVersion(String path, int version) throws org.apache.thrift.TException
+    public void send_deleteByVersion(List<String> path, int version) throws org.apache.thrift.TException
     {
       deleteByVersion_args args = new deleteByVersion_args();
       args.setPath(path);
@@ -303,7 +303,7 @@ public class FileSystem {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void getFile(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void getFile(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getFile_call method_call = new getFile_call(path, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -311,8 +311,8 @@ public class FileSystem {
     }
 
     public static class getFile_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String path;
-      public getFile_call(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private List<String> path;
+      public getFile_call(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.path = path;
       }
@@ -364,7 +364,7 @@ public class FileSystem {
       }
     }
 
-    public void listChildren(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void listChildren(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       listChildren_call method_call = new listChildren_call(path, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -372,8 +372,8 @@ public class FileSystem {
     }
 
     public static class listChildren_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String path;
-      public listChildren_call(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private List<String> path;
+      public listChildren_call(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.path = path;
       }
@@ -396,7 +396,7 @@ public class FileSystem {
       }
     }
 
-    public void addFile(String path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void addFile(List<String> path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       addFile_call method_call = new addFile_call(path, data, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -404,9 +404,9 @@ public class FileSystem {
     }
 
     public static class addFile_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String path;
+      private List<String> path;
       private ByteBuffer data;
-      public addFile_call(String path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public addFile_call(List<String> path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.path = path;
         this.data = data;
@@ -431,7 +431,7 @@ public class FileSystem {
       }
     }
 
-    public void updateFile(String path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void updateFile(List<String> path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       updateFile_call method_call = new updateFile_call(path, data, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -439,9 +439,9 @@ public class FileSystem {
     }
 
     public static class updateFile_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String path;
+      private List<String> path;
       private ByteBuffer data;
-      public updateFile_call(String path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public updateFile_call(List<String> path, ByteBuffer data, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.path = path;
         this.data = data;
@@ -466,7 +466,7 @@ public class FileSystem {
       }
     }
 
-    public void deleteFile(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void deleteFile(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       deleteFile_call method_call = new deleteFile_call(path, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -474,8 +474,8 @@ public class FileSystem {
     }
 
     public static class deleteFile_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String path;
-      public deleteFile_call(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private List<String> path;
+      public deleteFile_call(List<String> path, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.path = path;
       }
@@ -498,7 +498,7 @@ public class FileSystem {
       }
     }
 
-    public void updateByVersion(String path, ByteBuffer data, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void updateByVersion(List<String> path, ByteBuffer data, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       updateByVersion_call method_call = new updateByVersion_call(path, data, version, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -506,10 +506,10 @@ public class FileSystem {
     }
 
     public static class updateByVersion_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String path;
+      private List<String> path;
       private ByteBuffer data;
       private int version;
-      public updateByVersion_call(String path, ByteBuffer data, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public updateByVersion_call(List<String> path, ByteBuffer data, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.path = path;
         this.data = data;
@@ -536,7 +536,7 @@ public class FileSystem {
       }
     }
 
-    public void deleteByVersion(String path, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void deleteByVersion(List<String> path, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       deleteByVersion_call method_call = new deleteByVersion_call(path, version, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -544,9 +544,9 @@ public class FileSystem {
     }
 
     public static class deleteByVersion_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String path;
+      private List<String> path;
       private int version;
-      public deleteByVersion_call(String path, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public deleteByVersion_call(List<String> path, int version, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.path = path;
         this.version = version;
@@ -1192,7 +1192,7 @@ public class FileSystem {
   public static class getFile_args implements org.apache.thrift.TBase<getFile_args, getFile_args._Fields>, java.io.Serializable, Cloneable, Comparable<getFile_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getFile_args");
 
-    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.LIST, (short)1);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
     static {
@@ -1200,7 +1200,7 @@ public class FileSystem {
       schemes.put(TupleScheme.class, new getFile_argsTupleSchemeFactory());
     }
 
-    public String path; // required
+    public List<String> path; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -1265,7 +1265,8 @@ public class FileSystem {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getFile_args.class, metaDataMap);
     }
@@ -1274,7 +1275,7 @@ public class FileSystem {
     }
 
     public getFile_args(
-      String path)
+      List<String> path)
     {
       this();
       this.path = path;
@@ -1285,7 +1286,8 @@ public class FileSystem {
      */
     public getFile_args(getFile_args other) {
       if (other.isSetPath()) {
-        this.path = other.path;
+        List<String> __this__path = new ArrayList<String>(other.path);
+        this.path = __this__path;
       }
     }
 
@@ -1298,11 +1300,26 @@ public class FileSystem {
       this.path = null;
     }
 
-    public String getPath() {
+    public int getPathSize() {
+      return (this.path == null) ? 0 : this.path.size();
+    }
+
+    public java.util.Iterator<String> getPathIterator() {
+      return (this.path == null) ? null : this.path.iterator();
+    }
+
+    public void addToPath(String elem) {
+      if (this.path == null) {
+        this.path = new ArrayList<String>();
+      }
+      this.path.add(elem);
+    }
+
+    public List<String> getPath() {
       return this.path;
     }
 
-    public getFile_args setPath(String path) {
+    public getFile_args setPath(List<String> path) {
       this.path = path;
       return this;
     }
@@ -1328,7 +1345,7 @@ public class FileSystem {
         if (value == null) {
           unsetPath();
         } else {
-          setPath((String)value);
+          setPath((List<String>)value);
         }
         break;
 
@@ -1483,8 +1500,18 @@ public class FileSystem {
           }
           switch (schemeField.id) {
             case 1: // PATH
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.path = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list8 = iprot.readListBegin();
+                  struct.path = new ArrayList<String>(_list8.size);
+                  String _elem9;
+                  for (int _i10 = 0; _i10 < _list8.size; ++_i10)
+                  {
+                    _elem9 = iprot.readString();
+                    struct.path.add(_elem9);
+                  }
+                  iprot.readListEnd();
+                }
                 struct.setPathIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -1507,7 +1534,14 @@ public class FileSystem {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.path != null) {
           oprot.writeFieldBegin(PATH_FIELD_DESC);
-          oprot.writeString(struct.path);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.path.size()));
+            for (String _iter11 : struct.path)
+            {
+              oprot.writeString(_iter11);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -1533,7 +1567,13 @@ public class FileSystem {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetPath()) {
-          oprot.writeString(struct.path);
+          {
+            oprot.writeI32(struct.path.size());
+            for (String _iter12 : struct.path)
+            {
+              oprot.writeString(_iter12);
+            }
+          }
         }
       }
 
@@ -1542,7 +1582,16 @@ public class FileSystem {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.path = iprot.readString();
+          {
+            org.apache.thrift.protocol.TList _list13 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.path = new ArrayList<String>(_list13.size);
+            String _elem14;
+            for (int _i15 = 0; _i15 < _list13.size; ++_i15)
+            {
+              _elem14 = iprot.readString();
+              struct.path.add(_elem14);
+            }
+          }
           struct.setPathIsSet(true);
         }
       }
@@ -2523,7 +2572,7 @@ public class FileSystem {
   public static class listChildren_args implements org.apache.thrift.TBase<listChildren_args, listChildren_args._Fields>, java.io.Serializable, Cloneable, Comparable<listChildren_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("listChildren_args");
 
-    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.LIST, (short)1);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
     static {
@@ -2531,7 +2580,7 @@ public class FileSystem {
       schemes.put(TupleScheme.class, new listChildren_argsTupleSchemeFactory());
     }
 
-    public String path; // required
+    public List<String> path; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -2596,7 +2645,8 @@ public class FileSystem {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(listChildren_args.class, metaDataMap);
     }
@@ -2605,7 +2655,7 @@ public class FileSystem {
     }
 
     public listChildren_args(
-      String path)
+      List<String> path)
     {
       this();
       this.path = path;
@@ -2616,7 +2666,8 @@ public class FileSystem {
      */
     public listChildren_args(listChildren_args other) {
       if (other.isSetPath()) {
-        this.path = other.path;
+        List<String> __this__path = new ArrayList<String>(other.path);
+        this.path = __this__path;
       }
     }
 
@@ -2629,11 +2680,26 @@ public class FileSystem {
       this.path = null;
     }
 
-    public String getPath() {
+    public int getPathSize() {
+      return (this.path == null) ? 0 : this.path.size();
+    }
+
+    public java.util.Iterator<String> getPathIterator() {
+      return (this.path == null) ? null : this.path.iterator();
+    }
+
+    public void addToPath(String elem) {
+      if (this.path == null) {
+        this.path = new ArrayList<String>();
+      }
+      this.path.add(elem);
+    }
+
+    public List<String> getPath() {
       return this.path;
     }
 
-    public listChildren_args setPath(String path) {
+    public listChildren_args setPath(List<String> path) {
       this.path = path;
       return this;
     }
@@ -2659,7 +2725,7 @@ public class FileSystem {
         if (value == null) {
           unsetPath();
         } else {
-          setPath((String)value);
+          setPath((List<String>)value);
         }
         break;
 
@@ -2814,8 +2880,18 @@ public class FileSystem {
           }
           switch (schemeField.id) {
             case 1: // PATH
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.path = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list16 = iprot.readListBegin();
+                  struct.path = new ArrayList<String>(_list16.size);
+                  String _elem17;
+                  for (int _i18 = 0; _i18 < _list16.size; ++_i18)
+                  {
+                    _elem17 = iprot.readString();
+                    struct.path.add(_elem17);
+                  }
+                  iprot.readListEnd();
+                }
                 struct.setPathIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -2838,7 +2914,14 @@ public class FileSystem {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.path != null) {
           oprot.writeFieldBegin(PATH_FIELD_DESC);
-          oprot.writeString(struct.path);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.path.size()));
+            for (String _iter19 : struct.path)
+            {
+              oprot.writeString(_iter19);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -2864,7 +2947,13 @@ public class FileSystem {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetPath()) {
-          oprot.writeString(struct.path);
+          {
+            oprot.writeI32(struct.path.size());
+            for (String _iter20 : struct.path)
+            {
+              oprot.writeString(_iter20);
+            }
+          }
         }
       }
 
@@ -2873,7 +2962,16 @@ public class FileSystem {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.path = iprot.readString();
+          {
+            org.apache.thrift.protocol.TList _list21 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.path = new ArrayList<String>(_list21.size);
+            String _elem22;
+            for (int _i23 = 0; _i23 < _list21.size; ++_i23)
+            {
+              _elem22 = iprot.readString();
+              struct.path.add(_elem22);
+            }
+          }
           struct.setPathIsSet(true);
         }
       }
@@ -3245,7 +3343,7 @@ public class FileSystem {
   public static class addFile_args implements org.apache.thrift.TBase<addFile_args, addFile_args._Fields>, java.io.Serializable, Cloneable, Comparable<addFile_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("addFile_args");
 
-    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.LIST, (short)1);
     private static final org.apache.thrift.protocol.TField DATA_FIELD_DESC = new org.apache.thrift.protocol.TField("data", org.apache.thrift.protocol.TType.STRING, (short)2);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
@@ -3254,7 +3352,7 @@ public class FileSystem {
       schemes.put(TupleScheme.class, new addFile_argsTupleSchemeFactory());
     }
 
-    public String path; // required
+    public List<String> path; // required
     public ByteBuffer data; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -3323,7 +3421,8 @@ public class FileSystem {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
       tmpMap.put(_Fields.DATA, new org.apache.thrift.meta_data.FieldMetaData("data", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING          , true)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
@@ -3334,7 +3433,7 @@ public class FileSystem {
     }
 
     public addFile_args(
-      String path,
+      List<String> path,
       ByteBuffer data)
     {
       this();
@@ -3347,7 +3446,8 @@ public class FileSystem {
      */
     public addFile_args(addFile_args other) {
       if (other.isSetPath()) {
-        this.path = other.path;
+        List<String> __this__path = new ArrayList<String>(other.path);
+        this.path = __this__path;
       }
       if (other.isSetData()) {
         this.data = org.apache.thrift.TBaseHelper.copyBinary(other.data);
@@ -3364,11 +3464,26 @@ public class FileSystem {
       this.data = null;
     }
 
-    public String getPath() {
+    public int getPathSize() {
+      return (this.path == null) ? 0 : this.path.size();
+    }
+
+    public java.util.Iterator<String> getPathIterator() {
+      return (this.path == null) ? null : this.path.iterator();
+    }
+
+    public void addToPath(String elem) {
+      if (this.path == null) {
+        this.path = new ArrayList<String>();
+      }
+      this.path.add(elem);
+    }
+
+    public List<String> getPath() {
       return this.path;
     }
 
-    public addFile_args setPath(String path) {
+    public addFile_args setPath(List<String> path) {
       this.path = path;
       return this;
     }
@@ -3428,7 +3543,7 @@ public class FileSystem {
         if (value == null) {
           unsetPath();
         } else {
-          setPath((String)value);
+          setPath((List<String>)value);
         }
         break;
 
@@ -3628,8 +3743,18 @@ public class FileSystem {
           }
           switch (schemeField.id) {
             case 1: // PATH
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.path = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list24 = iprot.readListBegin();
+                  struct.path = new ArrayList<String>(_list24.size);
+                  String _elem25;
+                  for (int _i26 = 0; _i26 < _list24.size; ++_i26)
+                  {
+                    _elem25 = iprot.readString();
+                    struct.path.add(_elem25);
+                  }
+                  iprot.readListEnd();
+                }
                 struct.setPathIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -3660,7 +3785,14 @@ public class FileSystem {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.path != null) {
           oprot.writeFieldBegin(PATH_FIELD_DESC);
-          oprot.writeString(struct.path);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.path.size()));
+            for (String _iter27 : struct.path)
+            {
+              oprot.writeString(_iter27);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         if (struct.data != null) {
@@ -3694,7 +3826,13 @@ public class FileSystem {
         }
         oprot.writeBitSet(optionals, 2);
         if (struct.isSetPath()) {
-          oprot.writeString(struct.path);
+          {
+            oprot.writeI32(struct.path.size());
+            for (String _iter28 : struct.path)
+            {
+              oprot.writeString(_iter28);
+            }
+          }
         }
         if (struct.isSetData()) {
           oprot.writeBinary(struct.data);
@@ -3706,7 +3844,16 @@ public class FileSystem {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(2);
         if (incoming.get(0)) {
-          struct.path = iprot.readString();
+          {
+            org.apache.thrift.protocol.TList _list29 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.path = new ArrayList<String>(_list29.size);
+            String _elem30;
+            for (int _i31 = 0; _i31 < _list29.size; ++_i31)
+            {
+              _elem30 = iprot.readString();
+              struct.path.add(_elem30);
+            }
+          }
           struct.setPathIsSet(true);
         }
         if (incoming.get(1)) {
@@ -4082,7 +4229,7 @@ public class FileSystem {
   public static class updateFile_args implements org.apache.thrift.TBase<updateFile_args, updateFile_args._Fields>, java.io.Serializable, Cloneable, Comparable<updateFile_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("updateFile_args");
 
-    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.LIST, (short)1);
     private static final org.apache.thrift.protocol.TField DATA_FIELD_DESC = new org.apache.thrift.protocol.TField("data", org.apache.thrift.protocol.TType.STRING, (short)2);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
@@ -4091,7 +4238,7 @@ public class FileSystem {
       schemes.put(TupleScheme.class, new updateFile_argsTupleSchemeFactory());
     }
 
-    public String path; // required
+    public List<String> path; // required
     public ByteBuffer data; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -4160,7 +4307,8 @@ public class FileSystem {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
       tmpMap.put(_Fields.DATA, new org.apache.thrift.meta_data.FieldMetaData("data", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING          , true)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
@@ -4171,7 +4319,7 @@ public class FileSystem {
     }
 
     public updateFile_args(
-      String path,
+      List<String> path,
       ByteBuffer data)
     {
       this();
@@ -4184,7 +4332,8 @@ public class FileSystem {
      */
     public updateFile_args(updateFile_args other) {
       if (other.isSetPath()) {
-        this.path = other.path;
+        List<String> __this__path = new ArrayList<String>(other.path);
+        this.path = __this__path;
       }
       if (other.isSetData()) {
         this.data = org.apache.thrift.TBaseHelper.copyBinary(other.data);
@@ -4201,11 +4350,26 @@ public class FileSystem {
       this.data = null;
     }
 
-    public String getPath() {
+    public int getPathSize() {
+      return (this.path == null) ? 0 : this.path.size();
+    }
+
+    public java.util.Iterator<String> getPathIterator() {
+      return (this.path == null) ? null : this.path.iterator();
+    }
+
+    public void addToPath(String elem) {
+      if (this.path == null) {
+        this.path = new ArrayList<String>();
+      }
+      this.path.add(elem);
+    }
+
+    public List<String> getPath() {
       return this.path;
     }
 
-    public updateFile_args setPath(String path) {
+    public updateFile_args setPath(List<String> path) {
       this.path = path;
       return this;
     }
@@ -4265,7 +4429,7 @@ public class FileSystem {
         if (value == null) {
           unsetPath();
         } else {
-          setPath((String)value);
+          setPath((List<String>)value);
         }
         break;
 
@@ -4465,8 +4629,18 @@ public class FileSystem {
           }
           switch (schemeField.id) {
             case 1: // PATH
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.path = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list32 = iprot.readListBegin();
+                  struct.path = new ArrayList<String>(_list32.size);
+                  String _elem33;
+                  for (int _i34 = 0; _i34 < _list32.size; ++_i34)
+                  {
+                    _elem33 = iprot.readString();
+                    struct.path.add(_elem33);
+                  }
+                  iprot.readListEnd();
+                }
                 struct.setPathIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -4497,7 +4671,14 @@ public class FileSystem {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.path != null) {
           oprot.writeFieldBegin(PATH_FIELD_DESC);
-          oprot.writeString(struct.path);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.path.size()));
+            for (String _iter35 : struct.path)
+            {
+              oprot.writeString(_iter35);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         if (struct.data != null) {
@@ -4531,7 +4712,13 @@ public class FileSystem {
         }
         oprot.writeBitSet(optionals, 2);
         if (struct.isSetPath()) {
-          oprot.writeString(struct.path);
+          {
+            oprot.writeI32(struct.path.size());
+            for (String _iter36 : struct.path)
+            {
+              oprot.writeString(_iter36);
+            }
+          }
         }
         if (struct.isSetData()) {
           oprot.writeBinary(struct.data);
@@ -4543,7 +4730,16 @@ public class FileSystem {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(2);
         if (incoming.get(0)) {
-          struct.path = iprot.readString();
+          {
+            org.apache.thrift.protocol.TList _list37 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.path = new ArrayList<String>(_list37.size);
+            String _elem38;
+            for (int _i39 = 0; _i39 < _list37.size; ++_i39)
+            {
+              _elem38 = iprot.readString();
+              struct.path.add(_elem38);
+            }
+          }
           struct.setPathIsSet(true);
         }
         if (incoming.get(1)) {
@@ -4919,7 +5115,7 @@ public class FileSystem {
   public static class deleteFile_args implements org.apache.thrift.TBase<deleteFile_args, deleteFile_args._Fields>, java.io.Serializable, Cloneable, Comparable<deleteFile_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("deleteFile_args");
 
-    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.LIST, (short)1);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
     static {
@@ -4927,7 +5123,7 @@ public class FileSystem {
       schemes.put(TupleScheme.class, new deleteFile_argsTupleSchemeFactory());
     }
 
-    public String path; // required
+    public List<String> path; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -4992,7 +5188,8 @@ public class FileSystem {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(deleteFile_args.class, metaDataMap);
     }
@@ -5001,7 +5198,7 @@ public class FileSystem {
     }
 
     public deleteFile_args(
-      String path)
+      List<String> path)
     {
       this();
       this.path = path;
@@ -5012,7 +5209,8 @@ public class FileSystem {
      */
     public deleteFile_args(deleteFile_args other) {
       if (other.isSetPath()) {
-        this.path = other.path;
+        List<String> __this__path = new ArrayList<String>(other.path);
+        this.path = __this__path;
       }
     }
 
@@ -5025,11 +5223,26 @@ public class FileSystem {
       this.path = null;
     }
 
-    public String getPath() {
+    public int getPathSize() {
+      return (this.path == null) ? 0 : this.path.size();
+    }
+
+    public java.util.Iterator<String> getPathIterator() {
+      return (this.path == null) ? null : this.path.iterator();
+    }
+
+    public void addToPath(String elem) {
+      if (this.path == null) {
+        this.path = new ArrayList<String>();
+      }
+      this.path.add(elem);
+    }
+
+    public List<String> getPath() {
       return this.path;
     }
 
-    public deleteFile_args setPath(String path) {
+    public deleteFile_args setPath(List<String> path) {
       this.path = path;
       return this;
     }
@@ -5055,7 +5268,7 @@ public class FileSystem {
         if (value == null) {
           unsetPath();
         } else {
-          setPath((String)value);
+          setPath((List<String>)value);
         }
         break;
 
@@ -5210,8 +5423,18 @@ public class FileSystem {
           }
           switch (schemeField.id) {
             case 1: // PATH
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.path = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list40 = iprot.readListBegin();
+                  struct.path = new ArrayList<String>(_list40.size);
+                  String _elem41;
+                  for (int _i42 = 0; _i42 < _list40.size; ++_i42)
+                  {
+                    _elem41 = iprot.readString();
+                    struct.path.add(_elem41);
+                  }
+                  iprot.readListEnd();
+                }
                 struct.setPathIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -5234,7 +5457,14 @@ public class FileSystem {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.path != null) {
           oprot.writeFieldBegin(PATH_FIELD_DESC);
-          oprot.writeString(struct.path);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.path.size()));
+            for (String _iter43 : struct.path)
+            {
+              oprot.writeString(_iter43);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -5260,7 +5490,13 @@ public class FileSystem {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetPath()) {
-          oprot.writeString(struct.path);
+          {
+            oprot.writeI32(struct.path.size());
+            for (String _iter44 : struct.path)
+            {
+              oprot.writeString(_iter44);
+            }
+          }
         }
       }
 
@@ -5269,7 +5505,16 @@ public class FileSystem {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.path = iprot.readString();
+          {
+            org.apache.thrift.protocol.TList _list45 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.path = new ArrayList<String>(_list45.size);
+            String _elem46;
+            for (int _i47 = 0; _i47 < _list45.size; ++_i47)
+            {
+              _elem46 = iprot.readString();
+              struct.path.add(_elem46);
+            }
+          }
           struct.setPathIsSet(true);
         }
       }
@@ -5641,7 +5886,7 @@ public class FileSystem {
   public static class updateByVersion_args implements org.apache.thrift.TBase<updateByVersion_args, updateByVersion_args._Fields>, java.io.Serializable, Cloneable, Comparable<updateByVersion_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("updateByVersion_args");
 
-    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.LIST, (short)1);
     private static final org.apache.thrift.protocol.TField DATA_FIELD_DESC = new org.apache.thrift.protocol.TField("data", org.apache.thrift.protocol.TType.STRING, (short)2);
     private static final org.apache.thrift.protocol.TField VERSION_FIELD_DESC = new org.apache.thrift.protocol.TField("version", org.apache.thrift.protocol.TType.I32, (short)3);
 
@@ -5651,7 +5896,7 @@ public class FileSystem {
       schemes.put(TupleScheme.class, new updateByVersion_argsTupleSchemeFactory());
     }
 
-    public String path; // required
+    public List<String> path; // required
     public ByteBuffer data; // required
     public int version; // required
 
@@ -5726,7 +5971,8 @@ public class FileSystem {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
       tmpMap.put(_Fields.DATA, new org.apache.thrift.meta_data.FieldMetaData("data", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING          , true)));
       tmpMap.put(_Fields.VERSION, new org.apache.thrift.meta_data.FieldMetaData("version", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -5739,7 +5985,7 @@ public class FileSystem {
     }
 
     public updateByVersion_args(
-      String path,
+      List<String> path,
       ByteBuffer data,
       int version)
     {
@@ -5756,7 +6002,8 @@ public class FileSystem {
     public updateByVersion_args(updateByVersion_args other) {
       __isset_bitfield = other.__isset_bitfield;
       if (other.isSetPath()) {
-        this.path = other.path;
+        List<String> __this__path = new ArrayList<String>(other.path);
+        this.path = __this__path;
       }
       if (other.isSetData()) {
         this.data = org.apache.thrift.TBaseHelper.copyBinary(other.data);
@@ -5776,11 +6023,26 @@ public class FileSystem {
       this.version = 0;
     }
 
-    public String getPath() {
+    public int getPathSize() {
+      return (this.path == null) ? 0 : this.path.size();
+    }
+
+    public java.util.Iterator<String> getPathIterator() {
+      return (this.path == null) ? null : this.path.iterator();
+    }
+
+    public void addToPath(String elem) {
+      if (this.path == null) {
+        this.path = new ArrayList<String>();
+      }
+      this.path.add(elem);
+    }
+
+    public List<String> getPath() {
       return this.path;
     }
 
-    public updateByVersion_args setPath(String path) {
+    public updateByVersion_args setPath(List<String> path) {
       this.path = path;
       return this;
     }
@@ -5863,7 +6125,7 @@ public class FileSystem {
         if (value == null) {
           unsetPath();
         } else {
-          setPath((String)value);
+          setPath((List<String>)value);
         }
         break;
 
@@ -6106,8 +6368,18 @@ public class FileSystem {
           }
           switch (schemeField.id) {
             case 1: // PATH
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.path = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list48 = iprot.readListBegin();
+                  struct.path = new ArrayList<String>(_list48.size);
+                  String _elem49;
+                  for (int _i50 = 0; _i50 < _list48.size; ++_i50)
+                  {
+                    _elem49 = iprot.readString();
+                    struct.path.add(_elem49);
+                  }
+                  iprot.readListEnd();
+                }
                 struct.setPathIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -6146,7 +6418,14 @@ public class FileSystem {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.path != null) {
           oprot.writeFieldBegin(PATH_FIELD_DESC);
-          oprot.writeString(struct.path);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.path.size()));
+            for (String _iter51 : struct.path)
+            {
+              oprot.writeString(_iter51);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         if (struct.data != null) {
@@ -6186,7 +6465,13 @@ public class FileSystem {
         }
         oprot.writeBitSet(optionals, 3);
         if (struct.isSetPath()) {
-          oprot.writeString(struct.path);
+          {
+            oprot.writeI32(struct.path.size());
+            for (String _iter52 : struct.path)
+            {
+              oprot.writeString(_iter52);
+            }
+          }
         }
         if (struct.isSetData()) {
           oprot.writeBinary(struct.data);
@@ -6201,7 +6486,16 @@ public class FileSystem {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(3);
         if (incoming.get(0)) {
-          struct.path = iprot.readString();
+          {
+            org.apache.thrift.protocol.TList _list53 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.path = new ArrayList<String>(_list53.size);
+            String _elem54;
+            for (int _i55 = 0; _i55 < _list53.size; ++_i55)
+            {
+              _elem54 = iprot.readString();
+              struct.path.add(_elem54);
+            }
+          }
           struct.setPathIsSet(true);
         }
         if (incoming.get(1)) {
@@ -6581,7 +6875,7 @@ public class FileSystem {
   public static class deleteByVersion_args implements org.apache.thrift.TBase<deleteByVersion_args, deleteByVersion_args._Fields>, java.io.Serializable, Cloneable, Comparable<deleteByVersion_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("deleteByVersion_args");
 
-    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.LIST, (short)1);
     private static final org.apache.thrift.protocol.TField VERSION_FIELD_DESC = new org.apache.thrift.protocol.TField("version", org.apache.thrift.protocol.TType.I32, (short)2);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
@@ -6590,7 +6884,7 @@ public class FileSystem {
       schemes.put(TupleScheme.class, new deleteByVersion_argsTupleSchemeFactory());
     }
 
-    public String path; // required
+    public List<String> path; // required
     public int version; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -6661,7 +6955,8 @@ public class FileSystem {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
       tmpMap.put(_Fields.VERSION, new org.apache.thrift.meta_data.FieldMetaData("version", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
@@ -6672,7 +6967,7 @@ public class FileSystem {
     }
 
     public deleteByVersion_args(
-      String path,
+      List<String> path,
       int version)
     {
       this();
@@ -6687,7 +6982,8 @@ public class FileSystem {
     public deleteByVersion_args(deleteByVersion_args other) {
       __isset_bitfield = other.__isset_bitfield;
       if (other.isSetPath()) {
-        this.path = other.path;
+        List<String> __this__path = new ArrayList<String>(other.path);
+        this.path = __this__path;
       }
       this.version = other.version;
     }
@@ -6703,11 +6999,26 @@ public class FileSystem {
       this.version = 0;
     }
 
-    public String getPath() {
+    public int getPathSize() {
+      return (this.path == null) ? 0 : this.path.size();
+    }
+
+    public java.util.Iterator<String> getPathIterator() {
+      return (this.path == null) ? null : this.path.iterator();
+    }
+
+    public void addToPath(String elem) {
+      if (this.path == null) {
+        this.path = new ArrayList<String>();
+      }
+      this.path.add(elem);
+    }
+
+    public List<String> getPath() {
       return this.path;
     }
 
-    public deleteByVersion_args setPath(String path) {
+    public deleteByVersion_args setPath(List<String> path) {
       this.path = path;
       return this;
     }
@@ -6756,7 +7067,7 @@ public class FileSystem {
         if (value == null) {
           unsetPath();
         } else {
-          setPath((String)value);
+          setPath((List<String>)value);
         }
         break;
 
@@ -6954,8 +7265,18 @@ public class FileSystem {
           }
           switch (schemeField.id) {
             case 1: // PATH
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.path = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list56 = iprot.readListBegin();
+                  struct.path = new ArrayList<String>(_list56.size);
+                  String _elem57;
+                  for (int _i58 = 0; _i58 < _list56.size; ++_i58)
+                  {
+                    _elem57 = iprot.readString();
+                    struct.path.add(_elem57);
+                  }
+                  iprot.readListEnd();
+                }
                 struct.setPathIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -6986,7 +7307,14 @@ public class FileSystem {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.path != null) {
           oprot.writeFieldBegin(PATH_FIELD_DESC);
-          oprot.writeString(struct.path);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.path.size()));
+            for (String _iter59 : struct.path)
+            {
+              oprot.writeString(_iter59);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         oprot.writeFieldBegin(VERSION_FIELD_DESC);
@@ -7018,7 +7346,13 @@ public class FileSystem {
         }
         oprot.writeBitSet(optionals, 2);
         if (struct.isSetPath()) {
-          oprot.writeString(struct.path);
+          {
+            oprot.writeI32(struct.path.size());
+            for (String _iter60 : struct.path)
+            {
+              oprot.writeString(_iter60);
+            }
+          }
         }
         if (struct.isSetVersion()) {
           oprot.writeI32(struct.version);
@@ -7030,7 +7364,16 @@ public class FileSystem {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(2);
         if (incoming.get(0)) {
-          struct.path = iprot.readString();
+          {
+            org.apache.thrift.protocol.TList _list61 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.path = new ArrayList<String>(_list61.size);
+            String _elem62;
+            for (int _i63 = 0; _i63 < _list61.size; ++_i63)
+            {
+              _elem62 = iprot.readString();
+              struct.path.add(_elem62);
+            }
+          }
           struct.setPathIsSet(true);
         }
         if (incoming.get(1)) {

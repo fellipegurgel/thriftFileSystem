@@ -38,11 +38,12 @@ import org.slf4j.LoggerFactory;
 public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fields>, java.io.Serializable, Cloneable, Comparable<FakeFile> {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("FakeFile");
 
-  private static final org.apache.thrift.protocol.TField CREATION_FIELD_DESC = new org.apache.thrift.protocol.TField("creation", org.apache.thrift.protocol.TType.STRING, (short)1);
-  private static final org.apache.thrift.protocol.TField MODIFICATION_FIELD_DESC = new org.apache.thrift.protocol.TField("modification", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField VERSION_FIELD_DESC = new org.apache.thrift.protocol.TField("version", org.apache.thrift.protocol.TType.I32, (short)3);
-  private static final org.apache.thrift.protocol.TField DATA_FIELD_DESC = new org.apache.thrift.protocol.TField("data", org.apache.thrift.protocol.TType.STRING, (short)4);
-  private static final org.apache.thrift.protocol.TField CHILDREN_FIELD_DESC = new org.apache.thrift.protocol.TField("children", org.apache.thrift.protocol.TType.SET, (short)5);
+  private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
+  private static final org.apache.thrift.protocol.TField CREATION_FIELD_DESC = new org.apache.thrift.protocol.TField("creation", org.apache.thrift.protocol.TType.STRING, (short)2);
+  private static final org.apache.thrift.protocol.TField MODIFICATION_FIELD_DESC = new org.apache.thrift.protocol.TField("modification", org.apache.thrift.protocol.TType.STRING, (short)3);
+  private static final org.apache.thrift.protocol.TField VERSION_FIELD_DESC = new org.apache.thrift.protocol.TField("version", org.apache.thrift.protocol.TType.I32, (short)4);
+  private static final org.apache.thrift.protocol.TField DATA_FIELD_DESC = new org.apache.thrift.protocol.TField("data", org.apache.thrift.protocol.TType.STRING, (short)5);
+  private static final org.apache.thrift.protocol.TField CHILDREN_FIELD_DESC = new org.apache.thrift.protocol.TField("children", org.apache.thrift.protocol.TType.SET, (short)6);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -50,6 +51,7 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
     schemes.put(TupleScheme.class, new FakeFileTupleSchemeFactory());
   }
 
+  public String name; // required
   public String creation; // required
   public String modification; // required
   public int version; // required
@@ -58,11 +60,12 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    CREATION((short)1, "creation"),
-    MODIFICATION((short)2, "modification"),
-    VERSION((short)3, "version"),
-    DATA((short)4, "data"),
-    CHILDREN((short)5, "children");
+    NAME((short)1, "name"),
+    CREATION((short)2, "creation"),
+    MODIFICATION((short)3, "modification"),
+    VERSION((short)4, "version"),
+    DATA((short)5, "data"),
+    CHILDREN((short)6, "children");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -77,15 +80,17 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // CREATION
+        case 1: // NAME
+          return NAME;
+        case 2: // CREATION
           return CREATION;
-        case 2: // MODIFICATION
+        case 3: // MODIFICATION
           return MODIFICATION;
-        case 3: // VERSION
+        case 4: // VERSION
           return VERSION;
-        case 4: // DATA
+        case 5: // DATA
           return DATA;
-        case 5: // CHILDREN
+        case 6: // CHILDREN
           return CHILDREN;
         default:
           return null;
@@ -132,6 +137,8 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+    tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CREATION, new org.apache.thrift.meta_data.FieldMetaData("creation", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.MODIFICATION, new org.apache.thrift.meta_data.FieldMetaData("modification", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -151,6 +158,7 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
   }
 
   public FakeFile(
+    String name,
     String creation,
     String modification,
     int version,
@@ -158,6 +166,7 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
     Set<String> children)
   {
     this();
+    this.name = name;
     this.creation = creation;
     this.modification = modification;
     this.version = version;
@@ -171,6 +180,9 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
    */
   public FakeFile(FakeFile other) {
     __isset_bitfield = other.__isset_bitfield;
+    if (other.isSetName()) {
+      this.name = other.name;
+    }
     if (other.isSetCreation()) {
       this.creation = other.creation;
     }
@@ -193,12 +205,37 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
 
   @Override
   public void clear() {
+    this.name = null;
     this.creation = null;
     this.modification = null;
     setVersionIsSet(false);
     this.version = 0;
     this.data = null;
     this.children = null;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public FakeFile setName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public void unsetName() {
+    this.name = null;
+  }
+
+  /** Returns true if field name is set (has been assigned a value) and false otherwise */
+  public boolean isSetName() {
+    return this.name != null;
+  }
+
+  public void setNameIsSet(boolean value) {
+    if (!value) {
+      this.name = null;
+    }
   }
 
   public String getCreation() {
@@ -347,6 +384,14 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
 
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
+    case NAME:
+      if (value == null) {
+        unsetName();
+      } else {
+        setName((String)value);
+      }
+      break;
+
     case CREATION:
       if (value == null) {
         unsetCreation();
@@ -392,6 +437,9 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
 
   public Object getFieldValue(_Fields field) {
     switch (field) {
+    case NAME:
+      return getName();
+
     case CREATION:
       return getCreation();
 
@@ -418,6 +466,8 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
     }
 
     switch (field) {
+    case NAME:
+      return isSetName();
     case CREATION:
       return isSetCreation();
     case MODIFICATION:
@@ -444,6 +494,15 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
   public boolean equals(FakeFile that) {
     if (that == null)
       return false;
+
+    boolean this_present_name = true && this.isSetName();
+    boolean that_present_name = true && that.isSetName();
+    if (this_present_name || that_present_name) {
+      if (!(this_present_name && that_present_name))
+        return false;
+      if (!this.name.equals(that.name))
+        return false;
+    }
 
     boolean this_present_creation = true && this.isSetCreation();
     boolean that_present_creation = true && that.isSetCreation();
@@ -497,6 +556,11 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
   public int hashCode() {
     List<Object> list = new ArrayList<Object>();
 
+    boolean present_name = true && (isSetName());
+    list.add(present_name);
+    if (present_name)
+      list.add(name);
+
     boolean present_creation = true && (isSetCreation());
     list.add(present_creation);
     if (present_creation)
@@ -533,6 +597,16 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
 
     int lastComparison = 0;
 
+    lastComparison = Boolean.valueOf(isSetName()).compareTo(other.isSetName());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetName()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, other.name);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
     lastComparison = Boolean.valueOf(isSetCreation()).compareTo(other.isSetCreation());
     if (lastComparison != 0) {
       return lastComparison;
@@ -603,6 +677,14 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
     StringBuilder sb = new StringBuilder("FakeFile(");
     boolean first = true;
 
+    sb.append("name:");
+    if (this.name == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.name);
+    }
+    first = false;
+    if (!first) sb.append(", ");
     sb.append("creation:");
     if (this.creation == null) {
       sb.append("null");
@@ -683,7 +765,15 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
           break;
         }
         switch (schemeField.id) {
-          case 1: // CREATION
+          case 1: // NAME
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.name = iprot.readString();
+              struct.setNameIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 2: // CREATION
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.creation = iprot.readString();
               struct.setCreationIsSet(true);
@@ -691,7 +781,7 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 2: // MODIFICATION
+          case 3: // MODIFICATION
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.modification = iprot.readString();
               struct.setModificationIsSet(true);
@@ -699,7 +789,7 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 3: // VERSION
+          case 4: // VERSION
             if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
               struct.version = iprot.readI32();
               struct.setVersionIsSet(true);
@@ -707,7 +797,7 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 4: // DATA
+          case 5: // DATA
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.data = iprot.readBinary();
               struct.setDataIsSet(true);
@@ -715,7 +805,7 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 5: // CHILDREN
+          case 6: // CHILDREN
             if (schemeField.type == org.apache.thrift.protocol.TType.SET) {
               {
                 org.apache.thrift.protocol.TSet _set0 = iprot.readSetBegin();
@@ -748,6 +838,11 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
+      if (struct.name != null) {
+        oprot.writeFieldBegin(NAME_FIELD_DESC);
+        oprot.writeString(struct.name);
+        oprot.writeFieldEnd();
+      }
       if (struct.creation != null) {
         oprot.writeFieldBegin(CREATION_FIELD_DESC);
         oprot.writeString(struct.creation);
@@ -796,22 +891,28 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
     public void write(org.apache.thrift.protocol.TProtocol prot, FakeFile struct) throws org.apache.thrift.TException {
       TTupleProtocol oprot = (TTupleProtocol) prot;
       BitSet optionals = new BitSet();
-      if (struct.isSetCreation()) {
+      if (struct.isSetName()) {
         optionals.set(0);
       }
-      if (struct.isSetModification()) {
+      if (struct.isSetCreation()) {
         optionals.set(1);
       }
-      if (struct.isSetVersion()) {
+      if (struct.isSetModification()) {
         optionals.set(2);
       }
-      if (struct.isSetData()) {
+      if (struct.isSetVersion()) {
         optionals.set(3);
       }
-      if (struct.isSetChildren()) {
+      if (struct.isSetData()) {
         optionals.set(4);
       }
-      oprot.writeBitSet(optionals, 5);
+      if (struct.isSetChildren()) {
+        optionals.set(5);
+      }
+      oprot.writeBitSet(optionals, 6);
+      if (struct.isSetName()) {
+        oprot.writeString(struct.name);
+      }
       if (struct.isSetCreation()) {
         oprot.writeString(struct.creation);
       }
@@ -838,24 +939,28 @@ public class FakeFile implements org.apache.thrift.TBase<FakeFile, FakeFile._Fie
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, FakeFile struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
-      BitSet incoming = iprot.readBitSet(5);
+      BitSet incoming = iprot.readBitSet(6);
       if (incoming.get(0)) {
+        struct.name = iprot.readString();
+        struct.setNameIsSet(true);
+      }
+      if (incoming.get(1)) {
         struct.creation = iprot.readString();
         struct.setCreationIsSet(true);
       }
-      if (incoming.get(1)) {
+      if (incoming.get(2)) {
         struct.modification = iprot.readString();
         struct.setModificationIsSet(true);
       }
-      if (incoming.get(2)) {
+      if (incoming.get(3)) {
         struct.version = iprot.readI32();
         struct.setVersionIsSet(true);
       }
-      if (incoming.get(3)) {
+      if (incoming.get(4)) {
         struct.data = iprot.readBinary();
         struct.setDataIsSet(true);
       }
-      if (incoming.get(4)) {
+      if (incoming.get(5)) {
         {
           org.apache.thrift.protocol.TSet _set5 = new org.apache.thrift.protocol.TSet(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
           struct.children = new HashSet<String>(2*_set5.size);

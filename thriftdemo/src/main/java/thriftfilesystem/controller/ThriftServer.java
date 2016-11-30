@@ -5,7 +5,6 @@
  */
 package thriftfilesystem.controller;
 
-import thriftfilesystem.controller.ServerImpl;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
