@@ -11,12 +11,14 @@ struct FakeFile
 }
 
 service FileSystem {
-    string getFile(1:list<string> path);
+    string getFile(1:string path);
     string hi();
-    string listChildren(1:list<string> path),
-    string addFile(1:list<string> path, 2:binary data),
-    string updateFile(1:list<string> path, 2:binary data),
-    string deleteFile(1:list<string> path),
-    string updateByVersion(1:list<string> path, 2:binary data, 3:i32 version),
-    string deleteByVersion(1:list<string> path, 2:i32 version),
+    string hi2();
+    string listChildren(1:string path),
+    string addFile(1:string path, 2:binary data),
+    string updateFile(1:string path, 2:binary data),
+    string deleteFile(1:string path),
+    string updateByVersion(1:string path, 2:binary data, 3:i32 version),
+    string deleteByVersion(1:string path, 2:i32 version),
+    bool checkFile(1:string path),
 }

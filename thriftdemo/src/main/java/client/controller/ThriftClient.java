@@ -29,54 +29,54 @@ public class ThriftClient {
             TProtocol protocol = new TBinaryProtocol(transport);
 
             ByteBuffer newData = ByteBuffer.wrap(data);
-            List<String> partiotionedPath = new ArrayList<>(Arrays.asList(path.split("/")));
-            if (partiotionedPath.isEmpty()) {
-                partiotionedPath.add("/");
-            } else {
-                partiotionedPath.set(0, "/");
-            }
+//            List<String> partiotionedPath = new ArrayList<>(Arrays.asList(path.split("/")));
+//            if (partiotionedPath.isEmpty()) {
+//                partiotionedPath.add("/");
+//            } else {
+//                partiotionedPath.set(0, "/");
+//            }
 
             FileSystem.Client client = new FileSystem.Client(protocol);
             String result = "";
             switch (request) {
                 case "ADD":
-                    result = client.addFile(partiotionedPath, newData);
-                    if (result == null) {
-                        result = "The file " + path + " already exists!";
+                    result = client.addFile(path, newData);
+                    if (result.equals("")) {
+                        result = "The file '" + path + "' already exists!";
                     }
                     break;
                 case "GET":
-                    result = client.getFile(partiotionedPath);
-                    if (result == null) {
-                        result = "The file " + path + " does not exist!";
+                    result = client.getFile(path);
+                    if (result.equals("")) {
+                        result = "The file '" + path + "' does not exist!";
                     }
                     break;
                 case "LIST":
-                    result = client.listChildren(partiotionedPath);
+                    result = client.listChildren(path);
                     if (result == null) {
                         result = "The file " + path + " does not exist!";
                     }
                     break;
                 case "UPDATE":
-                    result = client.updateFile(partiotionedPath, newData);
+                    result = client.updateFile(path, newData);
                     if (result == null) {
                         result = "The file " + path + " does not exist!";
                     }
                     break;
                 case "DELETE":
-                    result = client.deleteFile(partiotionedPath);
+                    result = client.deleteFile(path);
                     if (result == null) {
                         result = "The file " + path + " does not exist!";
                     }
                     break;
                 case "DELETE+VERSION":
-                    result = client.deleteByVersion(partiotionedPath, version);
+                    result = client.deleteByVersion(path, version);
                     if (result == null) {
                         result = "The file " + path + " does not exist or it has a different version!";
                     }
                     break;
                 case "UPDATE+VERSION":
-                    result = client.updateByVersion(partiotionedPath, newData, version);
+                    result = client.updateByVersion(path, newData, version);
                     if (result == null) {
                         result = "The file " + path + " does not exist or it has a different version!";
                     }

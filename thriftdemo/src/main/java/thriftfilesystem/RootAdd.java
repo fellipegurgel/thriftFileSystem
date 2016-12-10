@@ -6,31 +6,28 @@
 package thriftfilesystem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
-import thriftfilesystem.controller.ServerImpl;
-import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TThreadPoolServer;
-import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransportException;
 import thriftclasses.FileSystem;
 
-public class teste {
+/**
+ *
+ * @author Fellipe G
+ */
+public class RootAdd {
+
     public static void main(String[] args) throws TTransportException, TException {
-        String t = "/a";
-        String b = t.substring(0, t.indexOf("/"));
-        int i = 0;
+        String root = "/";
         TSocket transport = new TSocket("localhost", 9003);
         transport.open();
         TProtocol protocol = new TBinaryProtocol(transport);
         FileSystem.Client client = new FileSystem.Client(protocol);
-        String a = client.addFile("/c", null);
+        String a = client.addFile("/a", null);
         System.out.println(a);
-
     }
 
 }
