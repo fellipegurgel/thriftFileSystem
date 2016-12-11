@@ -49,11 +49,16 @@ public class ClientView extends javax.swing.JFrame {
         jLabel1.setText("Host:");
 
         hostTextField.setColumns(18);
-        hostTextField.setText("localhost:");
+        hostTextField.setText("localhost:9003");
 
         jLabel2.setText("Request:");
 
-        requestComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GET", "ADD", "LIST", "UPDATE", "DELETE" }));
+        requestComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADD", "GET", "LIST", "UPDATE", "UPDATE+VERSION", "DELETE", "DELETE+VERSION" }));
+        requestComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Path:");
 
@@ -145,6 +150,10 @@ public class ClientView extends javax.swing.JFrame {
         ThriftClient.ProcessClientRequest(host[0], Integer.parseInt(host[1]), request, path, version, data);
 
     }//GEN-LAST:event_goButtonActionPerformed
+
+    private void requestComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_requestComboBoxActionPerformed
 
     /**
      * @param args the command line arguments

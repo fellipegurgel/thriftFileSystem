@@ -39,6 +39,7 @@ public class ServerImpl implements FileSystem.Iface {
     public ServerImpl() {
     }
 
+    @Override
     public String hi() throws TException {
         TSocket transport = new TSocket("localhost", otherServers[0]);
         transport.open();
@@ -47,17 +48,16 @@ public class ServerImpl implements FileSystem.Iface {
         return client.hi2();
     }
 
+    @Override
     public String hi2() throws TException {
-        return "Gente entrou aqui. deus seja louvado!\n Hello " + otherServers[serverID];
+        return "Gente entrou aqui. deus seje louvado!\n Hello " + otherServers[serverID];
     }
 
     @Override
     public String getFile(String path) throws TException {
-
         int serverHost = path.hashCode() % serversNumber;
         String result = "";
         FakeFile file = null;
-
         if (serverHost == this.serverID) {
             if (this.fileSyetem.containsKey(path)) {
                 file = fileSyetem.get(path);
@@ -85,10 +85,8 @@ public class ServerImpl implements FileSystem.Iface {
 
     @Override
     public String listChildren(String path) throws TException {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String result = "File(s) under " + path + ":\n";
         int serverHost = path.hashCode() % serversNumber;
-        //String result = "";
         if (serverHost == this.serverID) {
             if (this.fileSyetem.containsKey(path)) {
                 FakeFile file = this.fileSyetem.get(path);
@@ -110,16 +108,13 @@ public class ServerImpl implements FileSystem.Iface {
 
     @Override
     public String addFile(String path, ByteBuffer data) throws TException {
-
         String fileName = "";
-
         if (path.equals("/")) {
             fileName = "/";
         } else {
             String[] splitededPath = path.split("/");
             fileName = splitededPath[splitededPath.length - 1];
         }
-
         int serverHost = path.hashCode() % serversNumber;
         String result = "";
         if (serverHost == this.serverID) {
@@ -131,7 +126,6 @@ public class ServerImpl implements FileSystem.Iface {
                             FakeFile file;
                             file = new FakeFile(fileName, date, date, 1, data, new TreeSet<String>());
                             this.fileSyetem.put(path, file);
-                            System.out.println("path: " + path + "\nfile name: " + fileName);
                             result = "File '" + fileName + "' successfully added!";
                             System.out.println(result);
                         } else {
@@ -166,13 +160,13 @@ public class ServerImpl implements FileSystem.Iface {
                 FakeFile file = this.fileSyetem.get(path);
                 if (checkVersion) {
                     if (file.getVersion() != version) {
-                        return "The version of '" + path + "' does not match " + version;
+                        return "The version of '" + path + "' is not '" + version + "'";
                     }
                 }
                 file.setData(data);
                 file.setVersion(file.getVersion() + 1);
                 file.setModification(new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date()));
-                result = "'" + path + "' updated!\n" + getFile(path);
+                result = "'" + path + "' UPDATED\n" + getFile(path);
                 return result;
             } else {
                 return "The file '" + path + "' does not exist!";
@@ -188,7 +182,45 @@ public class ServerImpl implements FileSystem.Iface {
 
     @Override
     public String deleteFile(String path, boolean checkVersion, int version) throws TException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int serverHost = path.hashCode() % serversNumber;
+        String result = "";
+        if (serverHost == this.serverID) {
+            if (this.fileSyetem.containsKey(path)) {
+                FakeFile tempFile = this.fileSyetem.get(path);
+                if (tempFile.getChildren().isEmpty()) {
+                    if (commitChanges(path, "deleting")) {
+                        String fileName = "";
+                        if (path.equals("/")) {
+                            fileName = "/";
+                        } else {
+                            String[] splitededPath = path.split("/");
+                            fileName = splitededPath[splitededPath.length - 1];
+                        }
+                        if (deleteChild(path, fileName)) {
+                            this.fileSyetem.remove(path);
+                            result = "File '" + fileName + "' successfully deleted!";
+                            System.out.println(result);
+                        } else {
+                            result = "Unable to delete child!";
+                        }
+                    } else {
+                        result = "Unable to commit changes!";
+                        return result;
+                    }
+                    return result;
+                } else {
+                    return "The file '" + path + "' has sub-files!";
+                }
+            } else {
+                return "The file '" + path + "' does not exist!";
+            }
+        } else {
+            TSocket transport = new TSocket("localhost", otherServers[serverHost]);
+            transport.open();
+            TProtocol protocol = new TBinaryProtocol(transport);
+            FileSystem.Client client = new FileSystem.Client(protocol);
+            return client.deleteFile(path, checkVersion, version);
+        }
     }
 
     boolean checkParents(String path, String fileName) throws TTransportException, TException {
@@ -222,7 +254,7 @@ public class ServerImpl implements FileSystem.Iface {
             String parent = getParent(path);
             int serverHost = parent.hashCode() % serversNumber;
             if (serverHost == this.serverID) {
-                if (commitChanges(path, "addind child")) {
+                if (commitChanges(path, "adding child")) {
                     FakeFile file = this.fileSyetem.get(parent);
                     file.children.add(fileName);
                     return true;
@@ -235,6 +267,31 @@ public class ServerImpl implements FileSystem.Iface {
                 TProtocol protocol = new TBinaryProtocol(transport);
                 FileSystem.Client client = new FileSystem.Client(protocol);
                 return client.addChild(path, fileName);
+            }
+        }
+    }
+    
+    @Override
+    public boolean deleteChild(String path, String fileName) throws TException {
+        if (path.equals(fileName)) {
+            return true;
+        } else {
+            String parent = getParent(path);
+            int serverHost = parent.hashCode() % serversNumber;
+            if (serverHost == this.serverID) {
+                if (commitChanges(path, "deleting child")) {
+                    FakeFile file = this.fileSyetem.get(parent);
+                    file.children.remove(fileName);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                TSocket transport = new TSocket("localhost", otherServers[serverHost]);
+                transport.open();
+                TProtocol protocol = new TBinaryProtocol(transport);
+                FileSystem.Client client = new FileSystem.Client(protocol);
+                return client.deleteChild(path, fileName);
             }
         }
     }
@@ -251,8 +308,7 @@ public class ServerImpl implements FileSystem.Iface {
         return parent;
     }
 
-    @Override
-    public boolean commitChanges(String file, String operation) throws TException {
+    boolean commitChanges(String file, String operation) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Commit changes about " + operation + " '" + file + "'? [Y/N] ");
         String response = scan.next();
