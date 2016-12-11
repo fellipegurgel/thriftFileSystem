@@ -5,6 +5,7 @@
  */
 package thriftfilesystem;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.thrift.TException;
@@ -26,7 +27,7 @@ public class RootAdd {
         transport.open();
         TProtocol protocol = new TBinaryProtocol(transport);
         FileSystem.Client client = new FileSystem.Client(protocol);
-        String a = client.addFile("/a", null);
+        String a = client.addFile("/", ByteBuffer.wrap("hahaha".getBytes()));
         System.out.println(a);
     }
 

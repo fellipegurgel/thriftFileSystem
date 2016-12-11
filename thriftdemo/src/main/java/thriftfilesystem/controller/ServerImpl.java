@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Level;
@@ -71,7 +72,7 @@ public class ServerImpl implements FileSystem.Iface {
                 }
                 return result;
             } else {
-                return "";
+                return "The file '" + path + "' does not exist!";
             }
         } else {
             TSocket transport = new TSocket("localhost", otherServers[serverHost]);
@@ -84,36 +85,68 @@ public class ServerImpl implements FileSystem.Iface {
 
     @Override
     public String listChildren(String path) throws TException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = "File(s) under " + path + ":\n";
+        int serverHost = path.hashCode() % serversNumber;
+        //String result = "";
+        if (serverHost == this.serverID) {
+            if (this.fileSyetem.containsKey(path)) {
+                FakeFile file = this.fileSyetem.get(path);
+                for (String s : file.getChildren()) {
+                    result += "- " + s + "\n";
+                }
+                return result;
+            } else {
+                return "The file '" + path + "' does not exist!";
+            }
+        } else {
+            TSocket transport = new TSocket("localhost", otherServers[serverHost]);
+            transport.open();
+            TProtocol protocol = new TBinaryProtocol(transport);
+            FileSystem.Client client = new FileSystem.Client(protocol);
+            return client.listChildren(path);
+        }
     }
 
     @Override
     public String addFile(String path, ByteBuffer data) throws TException {
-        
+
         String fileName = "";
-        
+
         if (path.equals("/")) {
             fileName = "/";
         } else {
             String[] splitededPath = path.split("/");
             fileName = splitededPath[splitededPath.length - 1];
         }
+
         int serverHost = path.hashCode() % serversNumber;
         String result = "";
         if (serverHost == this.serverID) {
-            if (!this.fileSyetem.containsKey(fileName)) {
+            if (!this.fileSyetem.containsKey(path)) {
                 if (checkParents(path, fileName)) {
-                    String date = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
-                    FakeFile file;
-                    file = new FakeFile(fileName, date, date, 1, data, new TreeSet<String>());
-                    this.fileSyetem.put(path, file);
-                    result = "File '" + fileName + "' successfully added!";
+                    if (commitChanges(path, "adding")) {
+                        if (addChild(path, fileName)) {
+                            String date = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
+                            FakeFile file;
+                            file = new FakeFile(fileName, date, date, 1, data, new TreeSet<String>());
+                            this.fileSyetem.put(path, file);
+                            System.out.println("path: " + path + "\nfile name: " + fileName);
+                            result = "File '" + fileName + "' successfully added!";
+                            System.out.println(result);
+                        } else {
+                            result = "Unable to add child";
+                        }
+                    } else {
+                        result = "Unable to commit changes!";
+                        return result;
+                    }
                     return result;
                 } else {
                     return "Parent folder(s) not found!";
                 }
             } else {
-                return "";
+                return "The file '" + path + "' already exists!";
             }
         } else {
             TSocket transport = new TSocket("localhost", otherServers[serverHost]);
@@ -125,31 +158,75 @@ public class ServerImpl implements FileSystem.Iface {
     }
 
     @Override
-    public String updateFile(String path, ByteBuffer data) throws TException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String updateFile(String path, ByteBuffer data, boolean checkVersion, int version) throws TException {
+        int serverHost = path.hashCode() % serversNumber;
+        String result = "";
+        if (serverHost == this.serverID) {
+            if (this.fileSyetem.containsKey(path)) {
+                FakeFile file = this.fileSyetem.get(path);
+                if (checkVersion) {
+                    if (file.getVersion() != version) {
+                        return "The version of '" + path + "' does not match " + version;
+                    }
+                }
+                file.setData(data);
+                file.setVersion(file.getVersion() + 1);
+                file.setModification(new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date()));
+                result = "'" + path + "' updated!\n" + getFile(path);
+                return result;
+            } else {
+                return "The file '" + path + "' does not exist!";
+            }
+        } else {
+            TSocket transport = new TSocket("localhost", otherServers[serverHost]);
+            transport.open();
+            TProtocol protocol = new TBinaryProtocol(transport);
+            FileSystem.Client client = new FileSystem.Client(protocol);
+            return client.updateFile(path, data, checkVersion, version);
+        }
     }
 
     @Override
-    public String deleteFile(String path) throws TException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String updateByVersion(String path, ByteBuffer data, int version) throws TException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String deleteByVersion(String path, int version) throws TException {
+    public String deleteFile(String path, boolean checkVersion, int version) throws TException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     boolean checkParents(String path, String fileName) throws TTransportException, TException {
         if (!path.equals("/")) {
-            String parent = path.substring(0, path.indexOf(fileName));
+            String parent = getParent(path);
             int serverHost = parent.hashCode() % serversNumber;
             if (serverHost == this.serverID) {
-                if (!this.fileSyetem.containsKey(parent)) {
+                return this.checkFile(parent);
+            } else {
+                TSocket transport = new TSocket("localhost", otherServers[serverHost]);
+                transport.open();
+                TProtocol protocol = new TBinaryProtocol(transport);
+                FileSystem.Client client = new FileSystem.Client(protocol);
+                return client.checkFile(parent);
+            }
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean checkFile(String file) {
+        return this.fileSyetem.containsKey(file);
+    }
+
+    @Override
+    public boolean addChild(String path, String fileName) throws TException {
+        if (path.equals(fileName)) {
+            return true;
+        } else {
+            String parent = getParent(path);
+            int serverHost = parent.hashCode() % serversNumber;
+            if (serverHost == this.serverID) {
+                if (commitChanges(path, "addind child")) {
+                    FakeFile file = this.fileSyetem.get(parent);
+                    file.children.add(fileName);
+                    return true;
+                } else {
                     return false;
                 }
             } else {
@@ -157,18 +234,28 @@ public class ServerImpl implements FileSystem.Iface {
                 transport.open();
                 TProtocol protocol = new TBinaryProtocol(transport);
                 FileSystem.Client client = new FileSystem.Client(protocol);
-                if (!client.checkFile(parent)) {
-                    return false;
-                }
+                return client.addChild(path, fileName);
             }
-            return true;
-        } else {
-            return true;
         }
     }
-    
+
+    public String getParent(String path) {
+        String[] parents = path.split("/");
+        String parent = "";
+        if (path.startsWith("/") && parents.length == 2) {
+            return "/";
+        }
+        for (int i = 1; i < parents.length - 1; i++) {
+            parent += "/" + parents[i];
+        }
+        return parent;
+    }
+
     @Override
-    public boolean checkFile(String file){
-        return this.fileSyetem.containsKey(file);
+    public boolean commitChanges(String file, String operation) throws TException {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Commit changes about " + operation + " '" + file + "'? [Y/N] ");
+        String response = scan.next();
+        return response.toUpperCase().equals("Y");
     }
 }

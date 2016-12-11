@@ -16,9 +16,9 @@ service FileSystem {
     string hi2();
     string listChildren(1:string path),
     string addFile(1:string path, 2:binary data),
-    string updateFile(1:string path, 2:binary data),
-    string deleteFile(1:string path),
-    string updateByVersion(1:string path, 2:binary data, 3:i32 version),
-    string deleteByVersion(1:string path, 2:i32 version),
+    string updateFile(1:string path, 2:binary data, 3:bool chechVersion, 4:i32 version),
+    string deleteFile(1:string path, 2:bool checkVersion, 3:i32 version),
     bool checkFile(1:string path),
+    bool addChild(1:string parent, 2:string fileName),
+    bool commitChanges(1:string file, 2:string operation),
 }

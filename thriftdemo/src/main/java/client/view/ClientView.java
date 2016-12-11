@@ -68,6 +68,7 @@ public class ClientView extends javax.swing.JFrame {
 
         dataTextArea.setColumns(15);
         dataTextArea.setRows(5);
+        dataTextArea.setText(" ");
         jScrollPane1.setViewportView(dataTextArea);
 
         goButton.setText("GO!");

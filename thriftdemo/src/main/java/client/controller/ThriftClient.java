@@ -41,42 +41,30 @@ public class ThriftClient {
             switch (request) {
                 case "ADD":
                     result = client.addFile(path, newData);
-                    if (result.equals("")) {
-                        result = "The file '" + path + "' already exists!";
-                    }
                     break;
                 case "GET":
                     result = client.getFile(path);
-                    if (result.equals("")) {
-                        result = "The file '" + path + "' does not exist!";
-                    }
                     break;
                 case "LIST":
                     result = client.listChildren(path);
-                    if (result == null) {
-                        result = "The file " + path + " does not exist!";
-                    }
                     break;
                 case "UPDATE":
-                    result = client.updateFile(path, newData);
-                    if (result == null) {
-                        result = "The file " + path + " does not exist!";
-                    }
+                    result = client.updateFile(path, newData, false, version);
                     break;
                 case "DELETE":
-                    result = client.deleteFile(path);
+                    result = client.deleteFile(path, false, version);
                     if (result == null) {
                         result = "The file " + path + " does not exist!";
                     }
                     break;
                 case "DELETE+VERSION":
-                    result = client.deleteByVersion(path, version);
+                    result = client.deleteFile(path, true, version);
                     if (result == null) {
                         result = "The file " + path + " does not exist or it has a different version!";
                     }
                     break;
                 case "UPDATE+VERSION":
-                    result = client.updateByVersion(path, newData, version);
+                    result = client.updateFile(path, newData, true, version);
                     if (result == null) {
                         result = "The file " + path + " does not exist or it has a different version!";
                     }
