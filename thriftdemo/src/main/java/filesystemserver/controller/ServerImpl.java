@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thriftfilesystem.controller;
+package filesystemserver.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
@@ -187,6 +187,11 @@ public class ServerImpl implements FileSystem.Iface {
         if (serverHost == this.serverID) {
             if (this.fileSyetem.containsKey(path)) {
                 FakeFile tempFile = this.fileSyetem.get(path);
+                if (checkVersion) {
+                    if (tempFile.getVersion() != version) {
+                        return "The version of '" + path + "' is not '" + version + "'";
+                    }
+                }
                 if (tempFile.getChildren().isEmpty()) {
                     if (commitChanges(path, "deleting")) {
                         String fileName = "";

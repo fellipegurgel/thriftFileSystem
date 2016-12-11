@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thriftfilesystem.view;
+package filesystemserver.view;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import thriftfilesystem.controller.ThriftServer;
+import filesystemserver.controller.ThriftServer;
 
 /**
  *
